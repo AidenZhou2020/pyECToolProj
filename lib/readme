@@ -1,0 +1,2 @@
+运行前需要将 libectool.so 复制到 /usr/lib 目录下
+sudo cp libectool.so /usr/lib/

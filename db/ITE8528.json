@@ -1,0 +1,46 @@
+[
+  {
+    "menuName": "EC_REGA",
+    "options": [
+      "GPIO 0x1600",
+      "GPIO 0xB00"
+    ]
+  },
+  {
+    "menuName": "EC_REGB",
+    "options": [
+      "GPIO 0x1600",
+      "GPIO 0xB00",
+      "GPIO 0x1600",
+      "GPIO 0xB00"
+    ]
+  },
+  {
+    "menuName": "EC_RAM",
+    "options": [
+      "GPIO 0x1600",
+      "GPIO 0xB00"
+    ]
+  },
+  {
+    "menuName": "DLM",
+    "options": [
+      "GPIO 0x1600",
+      "GPIO 0xB00",
+      "GPIO 0xB00",
+      "GPIO 0x1600",
+      "GPIO 0xB00",
+      "GPIO 0xB00"
+    ]
+  },
+  {
+    "menuName": "PNPCFG",
+    "options": [
+      "GPIO 0x1600",
+      "GPIO 0xB00",
+      "GPIO 0x1600",
+      "GPIO 0x1600",
+      "GPIO 0x1600"
+    ]
+  }
+]
