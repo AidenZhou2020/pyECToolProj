@@ -1,0 +1,1 @@
+pyinstaller -F --onefile --paths=./venv/lib/python3.7/site-packages:./lib:./db main.py --specpath ./pack --distpath ./pack

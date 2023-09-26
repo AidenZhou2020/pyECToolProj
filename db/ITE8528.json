@@ -2,24 +2,76 @@
   {
     "menuName": "EC_REGA",
     "options": [
+      "SMFI 0x1000",
+      "INTC 0x1100",
+      "EC2I 0x1200",
+      "KBC 0x1300",
+      "SWUC 0x1400",
+      "PMC 0x1500",
       "GPIO 0x1600",
-      "GPIO 0xB00"
+      "PS/2 0x1700",
+      "PWM 0x1800",
+      "ADC 0x1900",
+      "DAC 0x1A00",
+      "WUC 0x1B00",
+      "SMBus 0x1C00",
+      "KB_Scan 0x1D00",
+      "ECPM 0x1E00",
+      "ETWD 0x1F00"
     ]
   },
   {
     "menuName": "EC_REGB",
     "options": [
-      "GPIO 0x1600",
-      "GPIO 0xB00",
-      "GPIO 0x1600",
-      "GPIO 0xB00"
+      "GCTRL 0x2000",
+      "EGPC 0x2100",
+      "Batt_RAM 0x2200",
+      "CIR 0x2300",
+      "TMKBC 0x2400",
+      "DBGR 0x2500",
+      "SSPI 0x2600",
+      "UART0 0x2700",
+      "UART1 0x2800",
+      "TMR 0x2900",
+      "HWM(SIO) 0x2A00",
+      "GPIO(SIO) 0x2C00",
+      "E-Flash 0x2D00",
+      "CEC 0x2E00",
+      "USBSW 0x2F00",
+      "PECI 0x3000",
+      "ESPI0 0x3100",
+      "ESPI1 0x3200",
+      "ESPI2 0x3300",
+      "ESPI3 0x3400",
+      "SMB1 0x3500",
+      "SMB2 0x3600",
+      "USBPD0 0x3700",
+      "USBPD1 0x3800",
+      "LED-DOTMTX 0x3900",
+      "LED-STRIP 0x3A00"
     ]
   },
   {
     "menuName": "EC_RAM",
     "options": [
-      "GPIO 0x1600",
-      "GPIO 0xB00"
+      "uC-SFR 0x8000",
+      "uC-RAM 0xE000",
+	  "SRAM0 0x0000",
+	  "SRAM1 0x0100",
+	  "SRAM2 0x0200",
+	  "SRAM3 0x0300",
+	  "SRAM4 0x0400",
+	  "SRAM5 0x0500",
+	  "SRAM6 0x0600",
+	  "SRAM7 0x0700",
+	  "SRAM8 0x0800",
+	  "SRAM9 0x0900",
+	  "SRAMA 0x0A00",
+	  "SRAMB 0x0B00",
+	  "SRAMC 0x0C00",
+	  "SRAMD 0x0D00",
+	  "SRAME 0x0E00",
+	  "SRAMF 0x0F00"
     ]
   },
   {
@@ -36,11 +88,21 @@
   {
     "menuName": "PNPCFG",
     "options": [
-      "GPIO 0x1600",
-      "GPIO 0xB00",
-      "GPIO 0x1600",
-      "GPIO 0x1600",
-      "GPIO 0x1600"
+      "UART1 0x01",
+      "UART2 0x02",
+      "SWUC 0x04",
+      "KBC_MS 0x05",
+      "KBC_KB 0x06",
+	  "CIR 0x0A",
+	  "SMFI 0x0F",
+	  "BRAM 0x10",
+	  "PMC1 0x11",
+	  "PMC2 0x12",
+	  "SPI 0x13",
+	  "PECI 0x14",
+	  "PMC3 0x17",
+	  "PMC4 0x18",
+	  "PMC5 0x19"
     ]
   }
 ]

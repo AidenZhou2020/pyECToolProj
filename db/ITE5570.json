@@ -2,34 +2,89 @@
   {
     "menuName": "EC_REGA",
     "options": [
-      "GPIO 0x1600"
+      "SMFI 0x1000",
+      "INTC 0x1100",
+      "EC2I 0x1200",
+      "KBC 0x1300",
+      "SWUC 0x1400",
+      "PMC 0x1500",
+      "GPIO 0x1600",
+      "PS/2 0x1700",
+      "PWM 0x1800",
+      "ADC 0x1900",
+      "DAC 0x1A00",
+      "WUC 0x1B00",
+      "SMBus 0x1C00",
+      "KB_Scan 0x1D00",
+      "ECPM 0x1E00",
+      "ETWD 0x1F00"
     ]
   },
   {
     "menuName": "EC_REGB",
     "options": [
-      "GPIO 0x1600",
-      "GPIO 0xB00",
-      "GPIO 0x1600",
-      "GPIO 0xB00"
+      "GCTRL 0x2000",
+      "EGPC 0x2100",
+      "Batt_RAM 0x2200",
+      "CIR 0x2300",
+      "TMKBC 0x2400",
+      "DBGR 0x2500",
+      "SSPI 0x2600",
+      "UART0 0x2700",
+      "UART1 0x2800",
+      "TMR 0x2900",
+      "HWM(SIO) 0x2A00",
+      "GPIO(SIO) 0x2C00",
+      "E-Flash 0x2D00",
+      "CEC 0x2E00",
+      "USBSW 0x2F00",
+      "PECI 0x3000",
+      "ESPI0 0x3100",
+      "ESPI1 0x3200",
+      "ESPI2 0x3300",
+      "ESPI3 0x3400",
+      "SMB1 0x3500",
+      "SMB2 0x3600",
+      "USBPD0 0x3700",
+      "USBPD1 0x3800",
+      "LED-DOTMTX 0x3900",
+      "LED-STRIP 0x3A00"
     ]
   },
   {
     "menuName": "EC_RAM",
     "options": [
-      "GPIO 0x1600",
-      "GPIO 0xB00"
+      "uC-SFR 0x8000",
+      "uC-RAM 0xE000"
     ]
   },
   {
     "menuName": "DLM",
     "options": [
-      "GPIO 0x1600",
-      "GPIO 0xB00",
-      "GPIO 0xB00",
-      "GPIO 0x1600",
-      "GPIO 0xB00",
-      "GPIO 0xB00"
+      "SRAM:0X8000(C000) 0xC000",
+      "SRAM:0X8100(C100) 0xC100",
+      "SRAM:0X8200(C200) 0xC200",
+      "SRAM:0X8300(C300) 0xC300",
+      "SRAM:0X8400(C400) 0xC400",
+      "SRAM:0X8500(C500) 0xC500",
+      "SRAM:0X8600(C600) 0xC600",
+      "SRAM:0X8700(C700) 0xC700",
+      "SRAM:0X8800(C800) 0xC800",
+      "SRAM:0X8900(C900) 0xC900",
+      "SRAM:0X8A00(CA00) 0xCA00",
+      "SRAM:0X8B00(CB00) 0xCB00",
+      "SRAM:0X8C00(CC00) 0xCC00",
+      "SRAM:0X8D00(CD00) 0xCD00",
+      "SRAM:0X8E00(CE00) 0xCE00",
+      "SRAM:0X8F00(CF00) 0xCF00",
+      "SRAM:0X9000(D000) 0xD000",
+      "SRAM:0X9100(D100) 0xD100",
+      "SRAM:0X9200(D200) 0xD200",
+      "SRAM:0X9300(D300) 0xD300",
+      "SRAM:0X9400(D400) 0xD400",
+      "SRAM:0X9500(D500) 0xD500",
+      "SRAM:0X9600(D600) 0xD600",
+      "SRAM:0X9700(D700) 0xD700"
     ]
   },
   {

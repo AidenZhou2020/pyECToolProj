@@ -17,7 +17,7 @@ class PyEcTool(QMainWindow):
     def __init__(self):
         super().__init__()
         self.RBtnFlag = 0
-        self.ectool = pyectool()
+        # self.ectool = pyectool()  # 这里不用self.ectool，因为在实际使用过程中出现了取值错误
         self.addr_dec = None
         self.menuFlag = 1
 
@@ -44,7 +44,7 @@ class PyEcTool(QMainWindow):
         # label
         ecms_label = QLabel("ECMS:")
         self.status_label = QLabel("Current Status")
-        auther_babel = QLabel("Auther: HY&ZM")
+        author_babel = QLabel("author: HY&ZM")
 
         # radio button
         radio_btn1 = QRadioButton("common interface")
@@ -88,7 +88,7 @@ class PyEcTool(QMainWindow):
         self.cur_status = QStatusBar()
         # self.cur_status.showMessage("Current Status")
         self.cur_status.addWidget(self.status_label, 1)
-        self.cur_status.addWidget(auther_babel)
+        self.cur_status.addWidget(author_babel)
 
         # add all to layout
         ecms_layout.addWidget(ecms_label)
@@ -155,7 +155,7 @@ class PyEcTool(QMainWindow):
         incr = row * 16 + col
         cur_addr = hex(self.addr_dec + incr)
         print(f"incr:{incr} new_val:{new_val} rc:{row} {col} cur_addr:{cur_addr}")
-        self.ectool.set(f"xdata.{cur_addr}", f"0x{new_val}")
+        pyectool().set(f"xdata.{cur_addr}", f"0x{new_val}")
         self.data_table.cellChanged.disconnect()
 
     def select_interface(self, radio_btn):
@@ -165,8 +165,6 @@ class PyEcTool(QMainWindow):
             if radio_btn.isChecked():
                 self.RBtnFlag = 0
                 print(item + " is selected")
-                # self.ectool.set("config.xdata.mode", "2e2f")
-                # self.ectool.set("config.xdata.mode", "4e4f")
                 self.ecms_p1.setText("2e")
                 self.ecms_p2.setText("2f")
                 self.ecms_p2.setVisible(True)
@@ -174,7 +172,6 @@ class PyEcTool(QMainWindow):
             if radio_btn.isChecked():
                 self.RBtnFlag = 1
                 print(item + " is selected")
-                # self.ectool.set("config.xdata.mode", "i2ec")
                 self.ecms_p1.setText("0xA00")
                 self.ecms_p2.setVisible(False)
 
@@ -183,14 +180,14 @@ class PyEcTool(QMainWindow):
             p1 = self.ecms_p1.text()
             p2 = self.ecms_p2.text()
             if (p1 == "2e" and p2 == "2f") or (p1 == "4e" and p2 == "4f"):  # 更多条件可以使用元组 if (p1, p2) in p_tuple:
-                self.ectool.set("config.xdata.mode", f"{p1}{p2}")
+                pyectool().set("config.xdata.mode", f"{p1}{p2}")
                 print(f"ectool.set('config.xdata.mode', '{p1}{p2}')")
             else:
                 print("\33[31mOnly '2e2f' or '4e4f'\33[0m")
         if self.RBtnFlag == 1:
             addr = self.ecms_p1.text().split("x")[1]
             if (addr == "A00") or (addr == "B00"):  # 多条件以后可以使用列表 if addr in addr_list:
-                self.ectool.set("config.xdata.mode", f"i2ec{addr}")
+                pyectool().set("config.xdata.mode", f"i2ec{addr}")
                 print(f"ectool.set('config.xdata.mode', 'i2ec{addr}')")
             else:
                 print("\33[31mOnly '0xA00' or '0xB00'\33[0m")
@@ -205,9 +202,9 @@ class PyEcTool(QMainWindow):
 
     def create_menu(self):
         menu_file = None
-        ecid1 = hex(self.ectool.get('xdata.0x2000')).split("x")[1]
-        ecid2 = hex(self.ectool.get('xdata.0x2001')).split("x")[1]
-        ecidver = self.ectool.get('xdata.0x2002')  # Reserved
+        ecid1 = hex(pyectool().get('xdata.0x2000')).split("x")[1]
+        ecid2 = hex(pyectool().get('xdata.0x2001')).split("x")[1]
+        ecidver = pyectool().get('xdata.0x2002')  # Reserved
         if ecid1 == "55" and ecid2 == "70":
             menu_file = "db/ITE5570.json"
         elif ecid1 == "85" and ecid2 == "28":
@@ -297,7 +294,10 @@ class PyEcTool(QMainWindow):
                     for col in range(16):
                         a = ""
                         addr_dec += 1
-                        data = self.ectool.get(f"xdata.{hex(addr_dec)}")
+                        data = pyectool().get(f"xdata.{hex(addr_dec)}")
+                        # 这里打印对应的地址和数据
+                        if hex(addr_dec) == "0xC111":
+                            print(f"version is {data}")
                         data_hex = hex(data).split("x")[1]
                         if len(data_hex) == 1:
                             a = 0
@@ -308,12 +308,12 @@ class PyEcTool(QMainWindow):
 
 class DataThread(QThread):
     data_sig = pyqtSignal(list)
-    ectool = pyectool()
 
     def __init__(self):
         super().__init__()
         self.running = False
         self.onlyonce = True
+        # self.ectool = pyectool() # 这里不用self.ectool，因为在实际使用过程中出现了取值错误
         self.time = 0
 
     def set_addr(self, addr):
@@ -325,6 +325,7 @@ class DataThread(QThread):
         if self.addr is None:
             self.running = False
 
+        ectool = pyectool()
         while self.running:
             t1 = time.time()
             addr_dec = self.addr
@@ -334,7 +335,7 @@ class DataThread(QThread):
                 data_row = []
                 for col in range(16):
                     addr_hex = hex(addr_dec)
-                    value = hex(self.ectool.get(f"xdata.{addr_hex}")).split("x")[1].upper()
+                    value = hex(ectool.get(f"xdata.{addr_hex}")).split("x")[1].upper()
                     data_row.append(value)
                     addr_dec += 1
                 data.append(data_row)
